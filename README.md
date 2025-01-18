@@ -1,5 +1,5 @@
 # math
-[![Alt text](./images/euclid_glitched.png)
+![Alt text](./images/euclid_glitched.png)
 
 Bash script that performs basic math functions, in addition to a few algebraic equations for various shapes/objects.
 
@@ -10,12 +10,14 @@ Bash script that performs basic math functions, in addition to a few algebraic e
 The intent behind the script started out as just a basic math calculator, but then there was an interest in trying to get in some other equations.  This script consists of the following equations:
 
 >	*Basic Math*
+>
 >		*- Addition*
 >		*- Subtraction*
 >		*- Multiplication*
 >		*- Division*
 >		
 >	*Area Math (for the following objects):*
+>
 >		*- Square*
 >		*- Rectangle*
 >		*- Triangle*
@@ -23,11 +25,13 @@ The intent behind the script started out as just a basic math calculator, but th
 >		*- Ellipse*
 >		
 >	*Surface Area Math (for the following objects):*
+>
 >		*- Cube*
 >		*- Sphere*
 >		*- Cylinder*
 >		
 >	*Volume Math (for the following objects):*
+>
 >		*- Cube*
 >		*- Sphere*
 >		*- Cylinder*
