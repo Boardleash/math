@@ -11,30 +11,30 @@ The intent behind the script started out as just a basic math calculator, but th
 
 >	*Basic Math*
 >
->		*- Addition*
->		*- Subtraction*
->		*- Multiplication*
->		*- Division*
+>		- Addition
+>		- Subtraction
+>		- Multiplication
+>		- Division
 >		
 >	*Area Math (for the following objects):*
 >
->		*- Square*
->		*- Rectangle*
->		*- Triangle*
->		*- Circle*
->		*- Ellipse*
+>		- Square
+>		- Rectangle
+>		- Triangle
+>		- Circle
+>		- Ellipse
 >		
 >	*Surface Area Math (for the following objects):*
 >
->		*- Cube*
->		*- Sphere*
->		*- Cylinder*
+>		- Cube
+>		- Sphere
+>		- Cylinder
 >		
 >	*Volume Math (for the following objects):*
 >
->		*- Cube*
->		*- Sphere*
->		*- Cylinder*
+>		- Cube
+>		- Sphere
+>		- Cylinder
 
 The user will be asked if they would like some calculations to be performed.  If they are not interested, they can simply type "***no***" at the initial prompt.
 
