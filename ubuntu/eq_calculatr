@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 #######################################
-### TITLE: eq_calculatr	            ###
+### TITLE: eq_calulatr		    ###
 ### AUTHOR: Boardleash (Derek)      ###
 ### DATE: Saturday, October 12 2024 ###
 #######################################
@@ -54,6 +54,7 @@
 # PI in this script is limited to 3.14159.
 # The range of numbers allowed is between -100 to 100 (excluding 0).
 # This script does utilize the "bc" command, so if the package is not installed, it would need to be installed to execute successfully.
+# The 'bc' command is used to allow bash to evaluate decimal numbers.
 # The decimal limit is set to 5 places for decimal numbers in this script.
 # This script does NOT need to be run with elevated privileges.
 # Tested on Ubuntu 24.04 LTS VM (Server w/GUI) in both graphical (GUI) and multi-user (Server) targets.
@@ -74,10 +75,8 @@ noc='\033[0m'
 
 # Set up an intro function.
 intro() {
-	echo
-	echo "Hello!  I can perform some calculations on two numbers for you if you want.
-	If not, simply say no on the first question."
-	echo
+	echo; echo "Hello!  I can perform some calculations on two numbers for you if you want.
+	If not, simply say no on the first question."; echo
 }
 
 # Set up an 'ask for numbers' function.
@@ -157,9 +156,9 @@ what_units() {
 ref() {
 	echo
 	echo -e "For reference;
-	YOUR$bprp FIRST$noc NUMBER is: "$bprp""$numba""$noc"
-	YOUR$bprp SECOND$noc NUMBER is: "$bprp""$numbb""$noc"
-	YOUR$bprp UNIT OF MEASUREMENT$noc is: "$bprp""$units""$noc"
+	YOUR"$bprp" FIRST"$noc" NUMBER is: "$bprp""$numba""$noc"
+	YOUR"$bprp" SECOND"$noc" NUMBER is: "$bprp""$numbb""$noc"
+	YOUR"$bprp" UNIT OF MEASUREMENT"$noc" is: "$bprp""$units""$noc"
 	^2 = SQUARED
 	^3 = CUBED"
 	echo
@@ -171,40 +170,40 @@ ref() {
 
 # Set up addition function.
 addnumbers() {
-	eq_one=$(echo "scale=5; $numba+$numba" | bc)
-	eq_two=$(echo "scale=5; $numba+$numbb" | bc)
+	eq_one=$(echo "scale=5; "$numba"+"$numba"" | bc)
+	eq_two=$(echo "scale=5; "$numba"+"$numbb"" | bc)
 	# SUM = A+B
-	echo -e "The$bgrn SUM$noc of your numbers is:" "$bgrn""$eq_two""$units""$noc"
+	echo -e "The"$bgrn" SUM"$noc" of your numbers is:" "$bgrn""$eq_two""$units""$noc"
 }
 
 # Set up subtraction function.
 subtractnumbers() {
-	eq_one=$(echo "scale=5; $numba-$numba" | bc)
-	eq_two=$(echo "scale=5; $numba-$numbb" | bc)
-	eq_three=$(echo "scale=5; $numbb-$numba" | bc)
+	eq_one=$(echo "scale=5; "$numba"-"$numba"" | bc)
+	eq_two=$(echo "scale=5; "$numba"-"$numbb"" | bc)
+	eq_three=$(echo "scale=5; "$numbb"-"$numba"" | bc)
 	# DIFFERNCE = A-B
-	echo -e "The$bgrn DIFFERENCE$noc of your$brd FIRST$noc number ("$numba") subtracted from your$brd SECOND$noc number ("$numbb") is:" "$bgrn""$eq_two""$units""$noc"
+	echo -e "The"$bgrn" DIFFERENCE"$noc" of your"$brd" FIRST"$noc" number ("$numba") subtracted from your"$brd" SECOND"$noc" number ("$numbb") is:" "$bgrn""$eq_two""$units""$noc"
 	# DIFFERENCE = B-A
-	echo -e "The$bgrn DIFFERENCE$noc of your$brd SECOND$noc number ("$numbb") subtracted from your$brd FIRST$noc number ("$numba") is:" "$bgrn""$eq_three""$units""$noc"
+	echo -e "The"$bgrn" DIFFERENCE"$noc" of your"$brd" SECOND"$noc" number ("$numbb") subtracted from your"$brd" FIRST"$noc" number ("$numba") is:" "$bgrn""$eq_three""$units""$noc"
 }
 
 # Set up multiplication function.
 multiplynumbers() {
-	eq_one=$(echo "scale=5; $numba*$numba" | bc)
-	eq_two=$(echo "scale=5; $numba*$numbb" | bc)
+	eq_one=$(echo "scale=5; "$numba"*"$numba"" | bc)
+	eq_two=$(echo "scale=5; "$numba"*"$numbb"" | bc)
 	# PRODUCT = AxB
-	echo -e "The$bgrn PRODUCT$noc of your numbers is:" "$bgrn""$eq_two""$units""$noc"
+	echo -e "The"$bgrn" PRODUCT"$noc" of your numbers is:" "$bgrn""$eq_two""$units""$noc"
 }
 
 # Set up division function.
 dividenumbers() {
-	eq_one=$(echo "scale=5; $numba/$numba" | bc)
-	eq_two=$(echo "scale=5; $numba/$numbb" | bc)
-	eq_three=$(echo "scale=5; $numbb/$numba" | bc)
+	eq_one=$(echo "scale=5; "$numba"/"$numba"" | bc)
+	eq_two=$(echo "scale=5; "$numba"/"$numbb"" | bc)
+	eq_three=$(echo "scale=5; "$numbb"/"$numba"" | bc)
 	# QUOTIENT = A/B
-	echo -e "The$bgrn QUOTIENT$noc of your$brd FIRST$noc number ("$numba") divided by your$brd SECOND$noc number ("$numbb") is:" "$bgrn""$eq_two""$units""$noc"
+	echo -e "The"$bgrn" QUOTIENT"$noc" of your"$brd" FIRST"$noc" number ("$numba") divided by your"$brd" SECOND"$noc" number ("$numbb") is:" "$bgrn""$eq_two""$units""$noc"
 	# QUOTIENT = B/A
-	echo -e "The$bgrn QUOTIENT$noc of your$brd SECOND$noc number ("$numbb") divided by your$brd FIRST$noc number ("$numba") is:" "$bgrn""$eq_three""$units""$noc"
+	echo -e "The"$bgrn" QUOTIENT"$noc" of your"$brd" SECOND"$noc" number ("$numbb") divided by your"$brd" FIRST"$noc" number ("$numba") is:" "$bgrn""$eq_three""$units""$noc"
 }
 
 #################
@@ -214,45 +213,45 @@ dividenumbers() {
 # Set up area equation functions.
 areasquare() {
 	# AREA of a SQUARE = AxA
-	squarea=$(echo "scale=5; $numba*$numba" | bc)
-	squareb=$(echo "scale=5; $numbb*$numba" | bc)
+	squarea=$(echo "scale=5; "$numba"*"$numba"" | bc)
+	squareb=$(echo "scale=5; "$numbb"*"$numba"" | bc)
 	# AREA of a SQUARE = AxA (in this case)
-	echo -e "The$bgrn AREA of a SQUARE$noc with your$brd FIRST$noc number ("$numba") is:" "$bgrn""$squarea""$units"^2"$noc"
+	echo -e "The"$bgrn" AREA of a SQUARE"$noc" with your"$brd" FIRST"$noc" number ("$numba") is:" "$bgrn""$squarea""$units"^2"$noc"
 	# AREA of a SQUARE = BxB (in this case)
-	echo -e "The$bgrn AREA of a SQUARE$noc with your$brd SECOND$noc number ("$numbb") is:" "$bgrn""$squareb""$units"^2"$noc"
+	echo -e "The"$bgrn" AREA of a SQUARE"$noc" with your"$brd" SECOND"$noc" number ("$numbb") is:" "$bgrn""$squareb""$units"^2"$noc"
 }
 
 arearectangle() {
 	# AREA of a RECTANGLE = WIDTH x HEIGHT
-	recta=$(echo "scale=5; $numba*$numbb" | bc)
+	recta=$(echo "scale=5; "$numba"*"$numbb"" | bc)
 	# AREA of a RECTANGLE = A x B (in this case)
-	echo -e "The$bgrn AREA of a RECTANGLE$noc with your provided numbers is:" "$bgrn""$recta""$units"^2"$noc"
+	echo -e "The"$bgrn" AREA of a RECTANGLE"$noc" with your provided numbers is:" "$bgrn""$recta""$units"^2"$noc"
 }
 
 areatriangle() {
 	# AREA of a TRIANGLE = BASE x HEIGHT x 0.5
-	trianga=$(echo "scale=5; $numba*$numbb*0.5" | bc)
+	trianga=$(echo "scale=5; "$numba"*"$numbb"*0.5" | bc)
 	# AREA of a TRIANGLE = A x B x 0.5 (in this case)
-	echo -e "The$bgrn AREA of a TRIANGLE$noc with your provided numbers is:" "$bgrn""$trianga""$units"^2"$noc"
+	echo -e "The"$bgrn" AREA of a TRIANGLE"$noc" with your provided numbers is:" "$bgrn""$trianga""$units"^2"$noc"
 }
 
 areacircle() {
 	# AREA of a CIRCLE = PI x RADIUS(squared)
-	eq_one=$(echo "scale=5; $numba*$numba" | bc)
-	circlea=$(echo "scale=5; 3.14159*$eq_one" | bc)
-	eq_two=$(echo "scale=5; $numbb*$numbb" | bc)
-	circleb=$(echo "scale=5; 3.14159*$eq_two" | bc)
+	eq_one=$(echo "scale=5; "$numba"*"$numba"" | bc)
+	circlea=$(echo "scale=5; 3.14159*"$eq_one"" | bc)
+	eq_two=$(echo "scale=5; "$numbb"*"$numbb"" | bc)
+	circleb=$(echo "scale=5; 3.14159*"$eq_two"" | bc)
 	# AREA of a CIRCLE = (3.14159 x A(squared)) (in this case)
-	echo -e "The$bgrn AREA of a CIRCLE$noc with your$brd FIRST$noc number ("$numba") is:" "$bgrn""$circlea""$units"^2"$noc"
+	echo -e "The"$bgrn" AREA of a CIRCLE"$noc" with your"$brd" FIRST"$noc" number ("$numba") is:" "$bgrn""$circlea""$units"^2"$noc"
 	# AREA of a CIRCLE = (3.14159 x B(squared)) (in this case)
-	echo -e "The$bgrn AREA of a CIRCLE$noc with your$brd SECOND$noc number ("$numbb") is:" "$bgrn""$circleb""$units"^2"$noc"
+	echo -e "The"$bgrn" AREA of a CIRCLE"$noc" with your"$brd" SECOND"$noc" number ("$numbb") is:" "$bgrn""$circleb""$units"^2"$noc"
 }
 
 areaellipse() {
 	# AREA of an ELLIPSE = PI x RADIUS OF LONG AXIS x RADIUS OF SHORT AXIS
-	ellipse=$(echo "scale=5; $numba*$numbb*3.14159" | bc)
+	ellipse=$(echo "scale=5; "$numba"*"$numbb"*3.14159" | bc)
 	# AREA of an ELLIPSE = 3.14159 x A x B (A as long axis and B as short axis in this case)
-	echo -e "The$bgrn AREA of an ELLIPSE$noc with your provided numbers is:" "$bgrn""$ellipse""$units"^2"$noc"
+	echo -e "The"$bgrn" AREA of an ELLIPSE"$noc" with your provided numbers is:" "$bgrn""$ellipse""$units"^2"$noc"
 }
 
 #########################
@@ -262,43 +261,43 @@ areaellipse() {
 # Set up surface area functions.
 surfareacube() {
 	# SURFACE AREA of a CUBE = 6 x A(squared)
-	eq_one=$(echo "scale=5; $numba*$numba" | bc)
-	surfa=$(echo "scale=5; $eq_one*6" | bc)
-	eq_two=$(echo "scale=5; $numbb*$numbb" | bc)
-	surfb=$(echo "scale=5; $eq_two*6" | bc)
+	eq_one=$(echo "scale=5; "$numba"*"$numba"" | bc)
+	surfa=$(echo "scale=5; "$eq_one"*6" | bc)
+	eq_two=$(echo "scale=5; "$numbb"*"$numbb"" | bc)
+	surfb=$(echo "scale=5; "$eq_two"*6" | bc)
 	# SURFACE AREA  of a CUBE = 6 x A(squared) (in this case)
-	echo -e "The$bgrn SURFACE AREA of a CUBE$noc with your$brd FIRST$noc number ("$numba") is:" "$bgrn""$surfa""$units"^2"$noc"
+	echo -e "The"$bgrn" SURFACE AREA of a CUBE"$noc" with your"$brd" FIRST"$noc" number ("$numba") is:" "$bgrn""$surfa""$units"^2"$noc"
 	# SURFACE AREA of a CUBE = 6 x B(squared) (in this case)
-	echo -e "The$bgrn SURFACE AREA of a CUBE$noc with your$brd SECOND$noc number ("$numbb") is:" "$bgrn""$surfb""$units"^2"$noc"
+	echo -e "The"$bgrn" SURFACE AREA of a CUBE"$noc" with your"$brd" SECOND"$noc" number ("$numbb") is:" "$bgrn""$surfb""$units"^2"$noc"
 }
 
 surfareasphere() {
 	# SURFACE AREA of a SPHERE = 4 x PI x RADIUS(squared)
 	eq_one=$(echo "scale=5; 4*3.14159" | bc)
-	eq_two=$(echo "scale=5; $numba*$numba" | bc)
-	surfa=$(echo "scale=5; $eq_one*$eq_two" | bc)
+	eq_two=$(echo "scale=5; "$numba"*"$numba"" | bc)
+	surfa=$(echo "scale=5; "$eq_one"*"$eq_two"" | bc)
 	eq_three=$(echo "scale=5; 4*3.14159" | bc)
-	eq_four=$(echo "scale=5; $numbb*$numbb" | bc)
-	surfb=$(echo "scale=5; $eq_three*$eq_four" | bc)
+	eq_four=$(echo "scale=5; "$numbb"*"$numbb"" | bc)
+	surfb=$(echo "scale=5; "$eq_three"*"$eq_four"" | bc)
 	# SURFACE AREA of a SPHERE = 4 x 3.14159 x A(squared) (in this case)
-	echo -e "The$bgrn SURFACE AREA of a SPHERE$noc with your$brd FIRST$noc number ("$numba") is:" "$bgrn""$surfa""$units"^2"$noc"
+	echo -e "The"$bgrn" SURFACE AREA of a SPHERE"$noc" with your"$brd" FIRST"$noc" number ("$numba") is:" "$bgrn""$surfa""$units"^2"$noc"
 	# SURFACE AREA of a SPHERE = 4 x 3.14159 x B(squared) (in this case)
-	echo -e "The$bgrn SURFACE AREA of a SPHERE$noc with your$brd SECOND$noc number ("$numbb") is:" "$bgrn""$surfb""$units"^2"$noc"
+	echo -e "The"$bgrn" SURFACE AREA of a SPHERE"$noc" with your"$brd" SECOND"$noc" number ("$numbb") is:" "$bgrn""$surfb""$units"^2"$noc"
 }
 
 surfareacylinder() {
 	# SURFACE AREA of a CYLINDER = (2 x PI x RADIUS x HEIGHT) + (2 x PI x RADIUS(squared))
-	eq_one=$(echo "scale=5; 2*3.14159*$numba*$numbb" | bc)
-	eq_two=$(echo "scale=5; $numba*$numba" | bc)
-	eq_three=$(echo "scale=5; 2*3.14159*$eq_two" | bc)
-	surfa=$(echo "scale=5; $eq_one+$eq_three" | bc)
-	eq_four=$(echo "scale=5; $numbb*$numbb" | bc)
+	eq_one=$(echo "scale=5; 2*3.14159*"$numba"*"$numbb"" | bc)
+	eq_two=$(echo "scale=5; "$numba"*"$numba"" | bc)
+	eq_three=$(echo "scale=5; 2*3.14159*"$eq_two"" | bc)
+	surfa=$(echo "scale=5; "$eq_one"+"$eq_three"" | bc)
+	eq_four=$(echo "scale=5; "$numbb"*"$numbb"" | bc)
 	eq_five=$(echo "scale=5; 2*3.14159*$eq_four" | bc)
-	surfb=$(echo "scale=5; $eq_one+$eq_five" | bc)
+	surfb=$(echo "scale=5; "$eq_one"+"$eq_five"" | bc)
 	# SURFACE AREA of a CYLINDER = (2 x 3.14159 x A x B) + (2 x 3.14159 x A(squared)) (A as the radius and B as the height in this case)
-	echo -e "The$bgrn SURFACE AREA of a CYLINDER$noc with your$brd FIRST$noc number ("$numba") as the radius is:" "$bgrn""$surfa""$units"^2"$noc"
+	echo -e "The"$bgrn" SURFACE AREA of a CYLINDER"$noc" with your"$brd" FIRST"$noc" number ("$numba") as the radius is:" "$bgrn""$surfa""$units"^2"$noc"
 	# SURFACE AREA of a CYLINDER = (2 x 3.14159 x B x A) + (2 x 3.14159 x B(squared)) (B as the radius and A as the height in this case)
-	echo -e "The$bgrn SURFACE AREA of a CYLINDER$noc with your$brd SECOND$noc number ("$numbb") as the radius is:" "$bgrn""$surfb""$units"^2"$noc"
+	echo -e "The"$bgrn" SURFACE AREA of a CYLINDER"$noc" with your"$brd" SECOND"$noc" number ("$numbb") as the radius is:" "$bgrn""$surfb""$units"^2"$noc"
 }
 
 ###################
@@ -308,41 +307,41 @@ surfareacylinder() {
 # Set up volume functions.
 volcube() {
 	# VOLUME of a CUBE = A(cubed)
-	vola=$(echo "scale=5; $numba*$numba*$numba" | bc)
-	volb=$(echo "scale=5; $numbb*$numbb*$numbb" | bc)
+	vola=$(echo "scale=5; "$numba"*"$numba"*"$numba"" | bc)
+	volb=$(echo "scale=5; "$numbb"*"$numbb"*"$numbb"" | bc)
 	# VOLUME of a CUBE = A(cubed) (in this case)
-	echo -e "The$bgrn VOLUME of a CUBE$noc with your$brd FIRST$noc number ("$numba") is:" "$bgrn""$vola""$units"^3"$noc"
+	echo -e "The"$bgrn" VOLUME of a CUBE"$noc" with your"$brd" FIRST"$noc" number ("$numba") is:" "$bgrn""$vola""$units"^3"$noc"
 	# VOLUME of a CUBE = B(cubed) (in this case)
-	echo -e "The$bgrn VOLUME of a CUBE$noc with your$brd SECOND$noc number ("$numbb") is:" "$bgrn""$volb""$units"^3"$noc"
+	echo -e "The"$bgrn" VOLUME of a CUBE"$noc" with your"$brd" SECOND"$noc" number ("$numbb") is:" "$bgrn""$volb""$units"^3"$noc"
 }
 
 volsphere() {
 	# VOLUME of a SPHERE = (4/3) x PI x RADIUS(cubed)
-	eq_one=$(echo "scale=5; $numba*$numba*$numba" | bc)
-	eq_two=$(echo "scale=5; 3.14159*$eq_one" | bc)
+	eq_one=$(echo "scale=5; "$numba"*"$numba"*"$numba"" | bc)
+	eq_two=$(echo "scale=5; 3.14159*"$eq_one"" | bc)
 	eq_three=$(echo "scale=5; 4/3" | bc)
-	vola=$(echo "scale=5; $eq_three*$eq_two" | bc)
-	eq_four=$(echo "scale=5; $numbb*$numbb*$numbb" | bc)
-	eq_five=$(echo "scale=5; 3.14159*$eq_four" | bc)
-	volb=$(echo "scale=5; $eq_three*$eq_five" | bc)
+	vola=$(echo "scale=5; "$eq_three"*"$eq_two"" | bc)
+	eq_four=$(echo "scale=5; "$numbb"*"$numbb"*"$numbb"" | bc)
+	eq_five=$(echo "scale=5; 3.14159*"$eq_four"" | bc)
+	volb=$(echo "scale=5; "$eq_three"*"$eq_five"" | bc)
 	# VOLUME of a SPHERE = (4/3) x 3.14159 x A(cubed) (A as the radius in this case)
-	echo -e "The$bgrn VOLUME of a SPHERE$noc with your$brd FIRST$noc number ("$numba") is:" "$bgrn""$vola""$units"^3"$noc"
+	echo -e "The"$bgrn" VOLUME of a SPHERE"$noc" with your"$brd" FIRST"$noc" number ("$numba") is:" "$bgrn""$vola""$units"^3"$noc"
 	# VOLUME of a SPHERE = (4/3) x 3.14159 x B(cubed) (B as the radius in this case)
-	echo -e "The$bgrn VOLUME of a SPHERE$noc with your$brd SECOND$noc number ("$numbb") is:" "$bgrn""$volb""$units"^3"$noc"
+	echo -e "The"$bgrn" VOLUME of a SPHERE"$noc" with your"$brd" SECOND"$noc" number ("$numbb") is:" "$bgrn""$volb""$units"^3"$noc"
 }
 
 volcylinder() {
 	# VOLUME of a CYLINDER = PI x RADIUS(squared) x HEIGHT
-	eq_one=$(echo "scale=5; $numba*$numba" | bc)
-	eq_two=$(echo "scale=5; $numbb*$numbb" | bc)
-	eq_three=$(echo "scale=5; $eq_one*3.14159" | bc)
-	eq_four=$(echo "scale=5; $eq_two*3.14159" | bc)
-	vola=$(echo "scale=5; $eq_three*$numbb" | bc)
-	volb=$(echo "scale=5; $eq_four*$numba" | bc)
+	eq_one=$(echo "scale=5; "$numba"*"$numba"" | bc)
+	eq_two=$(echo "scale=5; "$numbb"*"$numbb"" | bc)
+	eq_three=$(echo "scale=5; "$eq_one"*3.14159" | bc)
+	eq_four=$(echo "scale=5; "$eq_two"*3.14159" | bc)
+	vola=$(echo "scale=5; "$eq_three"*"$numbb"" | bc)
+	volb=$(echo "scale=5; "$eq_four"*"$numba"" | bc)
 	# VOLUME of a CYLINDER = 3.14159 x A(squared) x B (A as the radius and B as the height in this case)
-	echo -e "The$bgrn VOLUME of a CYLINDER$noc with your$brd FIRST$noc number ("$numba") as the radius is:" "$bgrn""$vola""$units"^3"$noc"
+	echo -e "The"$bgrn" VOLUME of a CYLINDER"$noc" with your"$brd" FIRST"$noc" number ("$numba") as the radius is:" "$bgrn""$vola""$units"^3"$noc"
 	# VOLUME of a CYLINDER = 3.14159 x B(squared) x A (B as the radius and A as the height in this case)
-	echo -e "The$bgrn VOLUME of a CYLINDER$noc with your$brd SECOND$noc number ("$numbb") as the radius is:" "$bgrn""$volb""$units"^3"$noc"
+	echo -e "The"$bgrn" VOLUME of a CYLINDER"$noc" with your"$brd" SECOND"$noc" number ("$numbb") as the radius is:" "$bgrn""$volb""$units"^3"$noc"
 }
 
 ##############################
@@ -352,7 +351,7 @@ volcylinder() {
 # Consolidate basic math functions.
 basicmath() {
 	# Announce to user this is the basic math section.
-	echo -e "$bprp BASIC MATH$noc"
+	echo -e ""$bprp" BASIC MATH"$noc""
 	echo
 	# Consolidate the functions that were created for basic math.
 	addnumbers
@@ -365,7 +364,7 @@ basicmath() {
 # Consolidate area math functions.
 areamath() {
 	# Announce to user this is the area math section.
-	echo -e "$bprp AREA MATH$noc"
+	echo -e ""$bprp" AREA MATH"$noc""
 	echo
 	# Consolidate the functions that were created for area math.
 	areasquare
@@ -379,7 +378,7 @@ areamath() {
 # Consolidate surface area math functions.
 surfareamath() {
 	# Announce to user this is the surface area math section.
-	echo -e "$bprp SURFACE AREA MATH$noc"
+	echo -e ""$bprp" SURFACE AREA MATH"$noc""
 	echo
 	# Consolidate the functions that were created for surface area math.
 	surfareacube
@@ -391,7 +390,7 @@ surfareamath() {
 # Conslidate volume math functions.
 volumemath() {
 	# Announce to user this is the volume math section.
-	echo -e "$bprp VOLUME MATH$noc"
+	echo -e ""$bprp" VOLUME MATH"$noc""
 	echo
 	# Consolidate the functions that were created for volume math.
 	volcube
